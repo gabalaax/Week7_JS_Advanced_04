@@ -34,8 +34,127 @@
       </div>
     </div>
 */
+function createCard (images, name, username, locations, profiles, followers, followings, bios) {
 
 
+  // createElement
+  const cardmain = document.createElement('div');
+  const image = document.createElement('img');
+  const cardinfo = document.createElement('div');
+  const h3 = document.createElement('h3');
+  const usernames = document.createElement('p');
+  const Location = document.createElement('p');
+  const Profile= document.createElement('p');
+  const Follower = document.createElement('p');
+  const Following = document.createElement('p');
+  const Bio = document.createElement('p');
+
+  // connecting element 
+  cardmain.appendChild(image);
+  cardmain.appendChild(cardinfo);
+  cardinfo.appendChild(h3);
+  cardinfo.appendChild(usernames);
+  cardinfo.appendChild(Location);
+  cardinfo.appendChild(Profile);
+  cardinfo.appendChild(Follower);
+  cardinfo.appendChild(Following);
+  cardinfo.appendChild(Bio);
+
+  // adding classList 
+
+  cardmain.classList.add("card");
+  cardinfo.classList.add("card-info");
+  h3.classList.add("name");
+  usernames.classList.add("username");
+
+
+  image.src = images;
+  h3.textContent = ` ${name}`;
+  usernames.textContent = `${username}`;
+  Location.textContent = `Location: ${locations}`;
+  Profile.textContent = `Profile: ${profiles}`;
+  Follower.textContent = `Followers: ${followers}`;
+  Following.textContent = `Following: ${followings}`;
+  Bio.textContent = `Bio: ${bios}`;
+
+
+
+  return cardmain
+
+}
+
+const main = document.querySelector(".cards")
+
+
+axios.get('https://api.github.com/users/duraanali')
+  .then(response => {
+    const userData = response.data;
+
+    const card = createCard(
+      userData.avatar_url,
+      userData.name,
+      userData.login,
+      userData.location,
+      userData.html_url,
+      userData.followers,
+      userData.following,
+      userData.bio
+    );
+    main.appendChild(card);
+  })
+  .catch(error => console.log(error));
+
+  axios.get('https://api.github.com/users/gabalaax')
+  .then(response => {
+    const userData = response.data;
+    const card = createCard(
+      userData.avatar_url,
+      userData.name,
+      userData.login,
+      userData.location,
+      userData.html_url,
+      userData.followers,
+      userData.following,
+      userData.bio
+    );
+    main.appendChild(card);
+  })
+  .catch(error => console.log(error));
+
+  axios.get('https://api.github.com/users/TaasCode')
+  .then(response => {
+    const userData = response.data;
+    const card = createCard(
+      userData.avatar_url,
+      userData.name,
+      userData.login,
+      userData.location,
+      userData.html_url,
+      userData.followers,
+      userData.following,
+      userData.bio
+    );
+    main.appendChild(card);
+  })
+  .catch(error => console.log(error));
+
+
+  axios.get('https://api.github.com/users/gabischool')
+  .then(response => {
+    const userData = response.data;
+    const card = createCard(
+      userData.avatar_url,
+      userData.name,
+      userData.login,
+      userData.location,
+      userData.html_url,
+      userData.followers,
+      userData.following,
+      userData.bio
+    );
+    main.appendChild(card);
+  })
+  .catch(error => console.log(error));
 
 /*
   STEP 4: Pass the data received from Github into your function, and append the returned markup to the DOM as a child of .cards
@@ -51,5 +170,4 @@
     Using that array, iterate over it, requesting data for each user, creating a new card for each user, and adding that card to the DOM.
 */
 
-const followersArray = [];
-
+//  const followersArray = []
